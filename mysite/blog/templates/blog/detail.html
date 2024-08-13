@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+
+{% block content%}
+<div class="container-fluid ">
+    
+    <div class="row">
+        <div class="col-lg-8">
+            <h1 class="mb-4">{{post.tittle}}</h1>
+            <p class="text-muted">{{post.date}}</p>
+            <img src="https://via.placeholder.com/800x400" class="img-fluid mb-4" alt="Blog Image">
+            <p>{{post.content}}</p>
+        </div>
+        <div class="col-lg-4">
+            <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">Related Posts</h5>
+                <ul class="list-unstyled">
+                {% for item in posts%}
+                {% if item.id != post.id %}
+                <li><a href="{% url "blog:details" post_id=item.id%}">{{item.tittle}}</a></li>
+                {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
